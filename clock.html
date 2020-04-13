@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>A MAGIC CLOCK</title>
+    <style>
+        body {
+            margin: 0px;
+            background: url(earth1.jpg) no-repeat center center fixed;
+            background-size: auto 100vh;
+            z-index: 0;
+
+        }
+
+        #date {
+            letter-spacing: 0.1em;
+            font-size: 40px;
+            color: #daf6ff;
+            text-shadow: 0 0 10px rgba(10, 175, 230), 0 0 10px rgba(10, 175, 230);
+            position: absolute;
+            top: 32%;
+            left: 160px;
+        }
+
+        #time {
+            letter-spacing: 0.05em;
+            font-size: 80px;
+            padding: 5px 0;
+            color: #daf6ff;
+            text-shadow: 0 0 10px rgba(10, 175, 230), 0 0 10px rgba(10, 175, 230);
+            position: absolute;
+            left: 170px;
+            top: 37%;
+        }
+
+        #clock {
+            width: 600px;
+            height: 600px;
+            /* border: white solid 5px; */
+            border-radius: 50%;
+            margin: auto;
+            position: absolute;
+            top: 3%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: url(earth3.png) no-repeat center center;
+            background-size: 185%;
+            box-shadow: 0px 0px 12px rgb(255, 255, 255);
+
+        }
+
+        #hour {
+            position: absolute;
+            width: 15%;
+            height: 8px;
+            background: white;
+            top: calc(50% - 5px);
+            border-radius: 2px;
+            left: 35%;
+            transform: rotate(0deg);
+            transform-origin: right center;
+        }
+
+        #minute {
+            position: absolute;
+            width: 30%;
+            height: 6px;
+            background: white;
+            /*  + - * /的符號前面後面都要空白 */
+            top: calc(50% - 3px);
+            border-radius: 2px;
+            left: 20%;
+            transform: rotate(0deg);
+            transform-origin: right center;
+        }
+
+        #second {
+            position: absolute;
+            width: 40%;
+            height: 4px;
+            background: red;
+            top: calc(50% - 2px);
+            border-radius: 2px;
+            left: 10%;
+            transform: rotate(0deg);
+            transform-origin: right center;
+        }
+
+        #point {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgb(7, 7, 7);
+        }
+
+        /* .point2 {
+            width: 0px;
+            height: 0px; 
+            top: 13px;
+            border-radius: 50%;
+            background-color: rgb(227, 252, 2);
+            transform-origin: center 187px;
+            position: absolute;
+            left: 50%;
+            box-shadow: 0px 0px 10px rgb(255, 255, 255);
+        } */
+
+        .line {
+            top: 12px;
+            width: 5px;
+            height: 25px;
+            background-color: rgb(227, 252, 2);
+            transform-origin: center 288px;
+            position: absolute;
+            left: 50%;
+            /* transform: translateX(-50%); */
+            box-shadow: 0px 0px 15px rgb(255, 255, 255), 0px 0px 15px rgb(255, 255, 255);
+        }
+
+        .twelve,
+        .three,
+        .six,
+        .nine {
+            position: absolute;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 50px;
+            color: rgb(227, 252, 2);
+        }
+
+        .twelve {
+            top: 0px;
+            left: 50%;
+            transform: translateX(-50%);
+            /* position: absolute;
+            width: 100%;
+            height: 60px;
+            top: calc(50% - 30px);
+            transform: rotate(90deg);
+            transform-origin: center center; */
+        }
+
+        /* .twelve p {
+            display: block;
+            transform: rotate(-90deg);
+            transform-origin: left top;
+            width: 60px;
+        } */
+
+        .three {
+            /* top: 50%;
+            right: 8px;
+            transform: translateY(-50%); */
+            position: absolute;
+            width: 50%;
+            height: 60px;
+            top: calc(50% - 30px);
+            transform: rotate(180deg);
+            transform-origin: right center;
+        }
+
+        .three span {
+            display: block;
+            transform: rotate(-180deg);
+            text-align: right;
+        }
+
+        .six {
+            left: 50%;
+            bottom: 0px;
+            transform: translateX(-50%);
+
+        }
+
+        /* .six p {} */
+
+        .nine {
+            /* top: 50%;
+            left: 8px;
+            transform: translateY(-50%); */
+            position: absolute;
+            width: 50%;
+            height: 60px;
+            top: calc(50% - 30px);
+            transform: rotate(0deg);
+            transform-origin: left center;
+        }
+
+        .nine span {
+            display: block;
+            transform: rotate(0deg);
+            text-align: left;
+        }
+
+        .saturn {
+            width: 20%;
+        }
+
+        .satellite {
+            width: 30%;
+        }
+
+        .astronaut {
+            width: 30%;
+            z-index: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="saturn.png" alt="土星" class="saturn">
+    <img src="satellite.png" alt="土星" class="satellite">
+    <img src="astronaut.png" alt="土星" class="astronaut">
+    <div id="date"></div>
+    <div id="time"></div>
+    <div id="clock">
+        <div id="hour"></div>
+        <div id="minute"></div>
+        <div id="second"></div>
+        <div id="point"></div>
+        <div class="twelve"><span>12</span></div>
+        <div class="three"><span>3</span></div>
+        <div class="six"><span>6</span></div>
+        <div class="nine"><span>9</span></div>
+    </div>
+
+    <script>
+        const hour = document.getElementById("hour");
+        const minute = document.getElementById("minute");
+        const sec = document.getElementById("second");
+
+        const setDate = () => {
+            const now = new Date()
+            hour.style.transform = `rotate(${now.getHours() * 30 + 90}deg)`
+            minute.style.transform = `rotate(${now.getMinutes() * 6 + 90}deg)`
+            second.style.transform = `rotate(${now.getSeconds() * 6 + 90}deg)`
+        }
+
+        setDate()
+        setInterval(setDate, 500)
+
+
+        for (let i = 0; i < 12; i++) {
+            let timePoint = document.createElement("div");
+            (i % 3 === 0) ? "" : timePoint.classList.add("line");
+            timePoint.style.transform = "translate(-50%) rotate(" + i * 30 + "deg)";
+            clock.appendChild(timePoint)
+        }
+
+        let date = document.getElementById("date");
+        let time = document.getElementById("time");
+        let week = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+        let timerID = setInterval(updateTime, 500);
+        updateTime();
+
+        function updateTime() {
+            let timmer = new Date();
+            time.innerHTML = ("0" + timmer.getHours()).slice(-2) + ':' + ("0" + timmer.getMinutes()).slice(-2) + ':' + (
+                "0" + timmer.getSeconds()).slice(-2)
+            date.innerHTML = ("000" + timmer.getFullYear()).slice(-4) + '-' + ("0" + (timmer.getMonth() + 1)).slice(-
+                2) +
+                '-' + ("0" + timmer.getDate()).slice(-2) + ' ' + week[timmer.getDay()];
+        };
+        // time.innerHTML = zeroPadding(timmer.getHours(), 2) + ':' + zeroPadding(timmer.getMinutes(), 2) + ':' +
+        //     zeroPadding(
+        //         timmer.getSeconds(), 2);
+        // date.innerHTML = zeroPadding(timmer.getFullYear(), 4) + '-' + zeroPadding(timmer.getMonth() + 1, 2) + '-' +
+        //     zeroPadding(timmer.getDate(), 2) + ' ' + week[timmer.getDay()];
+
+        // function zeroPadding(num, digit) {
+        //     let zero = '';
+        //     for (let i = 0; i < digit; i++) {
+        //         zero += '0';
+        //     }
+        //     return (zero + num).slice(-digit);
+        // }
+        let i = 0;
+        const DI = document.images;
+        const width = window.screen.width;
+        const height = window.screen.height;
+
+        function move() {
+            let DIS = DI[0].style;
+            DIS.position = 'absolute';
+            let speed = 0.002;
+            // (width or height /xx)距離中心點的距離
+            DIS.left = Math.sin(i * speed) * (width / 30) + 1400 + "px";
+            DIS.top = Math.cos(i * speed) * (height / 50) + 180 + "px";
+            i++;
+        }
+
+        setInterval('move()', 10);
+
+        function move_1() {
+            let DIS = DI[1].style;
+            DIS.position = 'absolute';
+            let speed = 0.00009;
+            // (width or height /xx)距離中心點的距離
+            DIS.left = Math.sin(i * speed) * (width / 30) + -40 + "px";
+            DIS.top = -40 + "px";
+            i++;
+        }
+
+        setInterval('move_1()', 10);
+        let j = 0
+
+        function move_2() {
+            let DIS = DI[2].style;
+            DIS.position = 'absolute';
+            let speed = 1;
+            if (j > Math.floor(width - DI[2].width) / speed) {
+                j = 0
+                setTimeout('move_2()')
+            }
+            // (width or height /xx)距離中心點的距離
+            DIS.left = j * speed + "px";
+            DIS.top = 350 + "px";
+
+            j++;
+
+        }
+
+        setInterval('move_2()', 10);
+    </script>
+</body>
+
+</html>
